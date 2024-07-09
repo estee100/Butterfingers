@@ -1,0 +1,44 @@
+.searchBar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search_icon {
+    cursor: pointer;
+  }
+  
+  .searchBox {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  
+  .searchBox input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
+    font-size: 14px;
+  }
+  
+  .suggestions {
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  
+  .suggestion {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .suggestion:hover {
+    background-color: #f0f0f0;
+  }
+  
