@@ -37,7 +37,7 @@ const Header = () => {
         <Link to="/movies/upcoming" className="headerLink">
           <span>Upcoming</span>
         </Link>
-        <Link to="/movies/my_list" className="headerLink">
+        <Link to="/movies/mylist" className="headerLink">
           <span>My List</span>
         </Link>
       </div>
