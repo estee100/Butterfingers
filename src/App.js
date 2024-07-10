@@ -5,7 +5,7 @@ import Home from './pages/home/home';
 import MovieList from './components/movieList/movieList';
 import Movie from './pages/movieDetail/movie';
 import SearchPage from './pages/search/SearchPage'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import myList from './pages/myList/my_List';
 
 function App() {
   return (
