@@ -28,15 +28,18 @@ const MovieList = () => {
 
   return (
     <div className="movie__list">
-      <h2 className="list__title">{(type ? type : "POPULAR").toUpperCase()}</h2>
+      <h2 className="list__title">
+        {(type ? type.replace(/_/g, " ") : "POPULAR").toUpperCase()}
+      </h2>
       <div className="list__cards">
         {movieList && movieList.length > 0 ? (
           movieList.map((movie) => <Cards key={movie.id} movie={movie} />)
-        ) : (
-          <p>No movies found</p>
-        )}
+      ) : (
+        <p>No movies found</p>
+      )}
       </div>
     </div>
+
   );
 };
 

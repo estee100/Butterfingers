@@ -1,0 +1,42 @@
+.searchPage {
+    padding: 40px;
+  }
+  
+  .results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid with minimum item width of 200px */
+    gap: 20px; /* Spacing between movie cards */
+  }
+  
+  .movieCard {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensure movie cards do not exceed their bounds */
+  }
+  
+  .movieCard img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+  }
+  
+  .movieCard h4, .movieCard p {
+    margin: 10px;
+    padding: 0;
+  }
+  
+  .movieCard h4 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .movieCard p {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  
+  .movieCard:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  

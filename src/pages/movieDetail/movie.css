@@ -86,16 +86,9 @@
     margin-left: auto;
 }
 
-.movie__links {
-    position: relative;
-    bottom: 120px;
-    display: flex;
-    justify-content: space-between;
-    width: 75%;
-}
-
 .movie__heading {
     font-size: 2.2rem;
+    margin-top: 20px;
 }
 
 .movie__Button {
@@ -111,7 +104,7 @@
 }
 
 .movie__homeButton {
-    background-color:rgb(255, 0, 0);
+    background-color: white;
     
 }
 
@@ -123,23 +116,55 @@
     margin-left: 1.4rem;
 }
 
-.movie__production {
-    width: 85%;
+.movie__heading {
+    font-size: 1.5rem;
+    margin-top: 1.7rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-bottom: 4rem;
-}
-
-
-.movie__productionComapany {
-    width: 200px;
-    margin: 2rem;
-}
-
-.productionCompanyImage {
-    display: flex;
-    flex-direction: column;
+    position: relative;
     align-items: center;
+}
+
+
+.addToListButton {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 150px;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #89CFF0;
+    border: 0;
+}
+
+.movie__production > hr {
+    margin-top: 2rem;
+}
+
+.movie__detailRightBottom > hr {
+    margin-top: 2rem;
+}
+
+
+.useful_links {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.movie__links {
+    position: relative;
+    left: -5%;
+    bottom: 120px;
+    justify-content: space-between;
+    width: 30%;
+    margin-top: 12rem;
+    display: flex;
+
 }
