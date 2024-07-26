@@ -4,20 +4,20 @@
   
   .results {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid with minimum item width of 200px */
-    gap: 20px; /* Spacing between movie cards */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
   }
   
   .movieCard {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Ensure movie cards do not exceed their bounds */
+    overflow: hidden;
   }
   
   .movieCard img {
     width: 100%;
     height: auto;
-    border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+    border-radius: 10px 10px 0 0;
   }
   
   .movieCard h4, .movieCard p {
@@ -36,7 +36,7 @@
   }
   
   .movieCard:hover {
-    transform: scale(1.05); /* Scale up on hover */
+    transform: scale(1.05);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
   

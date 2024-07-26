@@ -3,28 +3,44 @@ import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-
+import ProfileInfo from './profileInfo';
+import axiosInstance from "../../utils/axiosInstance";
 
 const Header = () => {
+  const [searchInput, setSearchInput] = useState('');
+  const [prevSearch, setPrevSearch] = useState('');
+  const [userInfo, setUserInfo] = useState(null);
+  const navigate = useNavigate();
+  const [openProfile, setOpenProfile] = useState(false);
 
-  const [searchInput, setSearchInput] = useState('')
-  const navigate = useNavigate()
-  
-  useEffect(()=>{
-    if(searchInput){
-      navigate(`/search?q=${searchInput}`)
+  useEffect(() => {
+    if (searchInput && searchInput !== prevSearch) {
+      navigate(`/search?q=${searchInput}`);
+      setPrevSearch(searchInput);
     }
-  },[searchInput])
+  }, [searchInput, navigate, prevSearch]);
 
+  const getUserInfo = async () => {
+    try {
+      const response = await axiosInstance.get("get-user");
+      if (response.data && response.data.user) {
+        setUserInfo(response.data.user);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        localStorage.clear();
+        navigate("/login");
+      }
+    }
+  };
 
-
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-  }
+  useEffect(() => {
+    getUserInfo();
+  }, [navigate]);
 
   return (
-    <div className="header">
-      <div className="headerLeft">
+    <div className={`header ${openProfile ? 'shifted' : ''}`}>
+      <div className={`headerLeft ${openProfile ? 'shifted-left' : ''}`}>
         <Link to="/">
           <img className="header__icon" src="/newnewlogo.png" alt="Logo" />
         </Link>
@@ -41,27 +57,35 @@ const Header = () => {
           <span>My List</span>
         </Link>
       </div>
-      <div className="headerRight">
-        <div className="searchicon">
-          <form onSubmit={handleSubmit}>
+      <div className={`headerRight ${openProfile ? 'shifted-left' : ''}`}>
+        <div className="search_icon">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (searchInput) {
+              navigate(`/search?q=${searchInput}`);
+            }
+          }}>
             <input
               type="text"
               placeholder="Search for movies..."
               className="searchInput"
-              onChange={(e)=>setSearchInput(e.target.value)}
-              value={(searchInput)}
+              onChange={(e) => setSearchInput(e.target.value)}
+              value={searchInput}
             />
             <button className="searchIcon">
-            <IoSearchOutline/>
+              <IoSearchOutline />
             </button>
           </form>
         </div>
 
         <div className="profile_icon">
-          <Link to="/auth">
-            <CgProfile className="profileIcon" style={{ color: "white" }} />
-          </Link>
+          <CgProfile
+            className="profileIcon"
+            style={{ color: "white" }}
+            onClick={() => setOpenProfile((prev) => !prev)}
+          />
         </div>
+        <ProfileInfo openProfile={openProfile} setOpenProfile={setOpenProfile} userInfo={userInfo} />
       </div>
     </div>
   );

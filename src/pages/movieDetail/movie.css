@@ -2,7 +2,7 @@
     width: 100%;
     position: relative;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -13,9 +13,10 @@
 .movie__backdrop {
     width: 100%;
     height: 500px;
-    object-fit:cover;
+    object-fit: cover;
     object-position: 0 35%;
 }
+
 
 .movie__detail {
     align-items: center;
@@ -30,7 +31,7 @@
 }
 
 .movie__poster {
-    width:300px;
+    width: 300px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 40px 6px;
 }
@@ -40,10 +41,10 @@
     display: flex;
     flex-direction: column;
     height: 450px;
-    justify-content:space-between ;
+    justify-content: space-between;
 }
 
-.movie__detailRightTop > div{
+.movie__detailRightTop > div {
     text-shadow: 0px 0px 5px #000000;
     margin-bottom: .5rem;
 }
@@ -68,7 +69,6 @@
     margin-right: 1rem;
 }
 
-
 .movie__detailRightBottom {
     margin: 2rem 0;
     flex: 0.8;
@@ -82,6 +82,7 @@
     position: relative;
     align-items: center;
 }
+
 .synopsisText > div:last-of-type {
     margin-left: auto;
 }
@@ -101,15 +102,21 @@
     width: 150px;
     color: black;
     font-weight: bold;
+    text-align: center;
+    text-decoration: none;
 }
 
 .movie__homeButton {
     background-color: white;
-    
 }
 
 .movie__imdbButton {
-    background-color:#f3ce13;
+    background-color: #f3ce13;
+}
+
+.movie__trailerButton {
+    background-color: #ff0000;
+    color: white;
 }
 
 .newTab {
@@ -125,7 +132,6 @@
     position: relative;
     align-items: center;
 }
-
 
 .addToListButton {
     display: flex;
@@ -150,7 +156,6 @@
     margin-top: 2rem;
 }
 
-
 .useful_links {
     font-size: 1.5rem;
     margin-top: 0.5rem;
@@ -160,11 +165,14 @@
 
 .movie__links {
     position: relative;
-    left: -5%;
     bottom: 120px;
-    justify-content: space-between;
-    width: 30%;
-    margin-top: 12rem;
     display: flex;
+    gap: 10px;
+    margin-top: 4rem;
+    margin-left: 3%
+}
 
+.movie__heading {
+    color: white;
+    font-size: 1.5rem;
 }

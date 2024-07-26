@@ -5,25 +5,40 @@ import Cards from "../card/card";
 
 const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
 
   useEffect(() => {
-    getData();
-  }, [type]);
+    getData(page);
+  }, [type, page]);
 
-  const getData = () => {
+  const getData = (pageNumber) => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${type ? type : "popular"}?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US`
+      `https://api.themoviedb.org/3/movie/${type ? type : "popular"}?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US&page=${pageNumber}`
     )
       .then((res) => res.json())
       .then((data) => {
         if (data.results) {
-          setMovieList(data.results);
+          setMovieList(prevMovies => pageNumber === 1 ? data.results : [...prevMovies, ...data.results]);
+          setTotalPages(data.total_pages);
         } else {
           console.error("No results found in API response:", data);
         }
       })
       .catch((error) => console.error("Error fetching data:", error));
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      setPage(prevPage => prevPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage(prevPage => prevPage - 1);
+    }
   };
 
   return (
@@ -34,12 +49,20 @@ const MovieList = () => {
       <div className="list__cards">
         {movieList && movieList.length > 0 ? (
           movieList.map((movie) => <Cards key={movie.id} movie={movie} />)
-      ) : (
-        <p>No movies found</p>
-      )}
+        ) : (
+          <p>No movies found</p>
+        )}
+      </div>
+      <div className="pagination-controls">
+        <button onClick={handlePrevPage} disabled={page === 1}>
+          Show less
+        </button>
+        <span>Page {page} of {totalPages}</span>
+        <button onClick={handleNextPage} disabled={page === totalPages}>
+          Show more
+        </button>
       </div>
     </div>
-
   );
 };
 

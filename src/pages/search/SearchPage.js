@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { useLocation, Link } from 'react-router-dom';
 import './searchPage.css';
-import Cards from '../../components/card/card'; // Update the path as per your file structure
+import Cards from '../../components/card/card';
+import axios from 'axios';
 
 const SearchPage = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [pageNo, setPageNo] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [setTotalPages] = useState(1);
 
   const query = new URLSearchParams(location.search).get('q');
 

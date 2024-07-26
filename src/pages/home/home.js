@@ -1,55 +1,94 @@
-import React, { useEffect, useState } from "react"
-import "./home.css"
+import React, { useEffect, useState } from "react";
+import "./home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MovieList from "../../components/movieList/movieList";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Home = () => {
-
-    const [ popularMovies, setPopularMovies ] = useState([])
+    const [popularMovies, setPopularMovies] = useState([]);
+    const [userInfo, setUserInfo] = useState(null); // Define userInfo state
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US")
-        .then(res => res.json())
-        .then(data => setPopularMovies(data.results))
-    }, [])
+        const fetchPopularMovies = async () => {
+            try {
+                const response = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US");
+                const data = await response.json();
+                setPopularMovies(data.results);
+            } catch (error) {
+                console.error("Error fetching popular movies:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPopularMovies();
+    }, []);
+
+    const getUserInfo = async () => {
+        try {
+            const response = await axiosInstance.get("get-user");
+            if (response.data && response.data.user) {
+                setUserInfo(response.data.user); // Use setUserInfo to update state
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                localStorage.clear();
+                navigate("/login");
+            }
+        }
+    };
+
+    useEffect(() => {
+        getUserInfo();
+    }, [navigate]);
 
     return (
         <>
             <div className="poster">
-                <Carousel
-                    showThumbs={false}
-                    autoPlay={true}
-                    transitionTime={3}
-                    infiniteLoop={true}
-                    showStatus={false}
-                >
-                    {
-                        popularMovies.map(movie => (
-                            <Link style={{textDecoration:"none",color:"white"}} to={`/movie/${movie.id}`} >
-                                <div className="posterImage">
-                                    <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
-                                </div>
-                                <div className="posterImage__overlay">
-                                    <div className="posterImage__title">{movie ? movie.original_title: ""}</div>
-                                    <div className="posterImage__runtime">
-                                        {movie ? movie.release_date : ""}
-                                        <span className="posterImage__rating">
-                                            {movie ? movie.vote_average :""}
-                                            <i className="fas fa-star" />{" "}
-                                        </span>
+                {!loading ? (
+                    <Carousel
+                        showThumbs={false}
+                        autoPlay={true}
+                        interval={5000}
+                        transitionTime={500}
+                        infiniteLoop={true}
+                        showStatus={false}
+                        swipeable={true}
+                        emulateTouch={true}
+                        selectedItem={0}
+                    >
+                        {
+                            popularMovies.map(movie => (
+                                <Link key={movie.id} style={{ textDecoration: "none", color: "white" }} to={`/movie/${movie.id}`}>
+                                    <div className="posterImage">
+                                        <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.original_title} />
                                     </div>
-                                    <div className="posterImage__description">{movie ? movie.overview : ""}</div>
-                                </div>
-                            </Link>
-                        ))
-                    }
-                </Carousel>
+                                    <div className="posterImage__overlay">
+                                        <div className="posterImage__title">{movie.original_title}</div>
+                                        <div className="posterImage__runtime">
+                                            {movie.release_date}
+                                            <span className="posterImage__rating">
+                                                {movie.vote_average}
+                                                <i className="fas fa-star" />{" "}
+                                            </span>
+                                        </div>
+                                        <div className="posterImage__description">{movie.overview}</div>
+                                    </div>
+                                </Link>
+                            ))
+                        }
+                    </Carousel>
+                ) : (
+                    <div>Loading...</div>
+                )}
                 <MovieList />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
