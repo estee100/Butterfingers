@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import MovieList from "../../components/movieList/movieList";
 import axiosInstance from "../../utils/axiosInstance";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
@@ -14,7 +16,7 @@ const Home = () => {
     useEffect(() => {
         const fetchPopularMovies = async () => {
             try {
-                const response = await fetch("https://api.themoviedb.org/3/movie/popular?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US");
+                const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US`);
                 const data = await response.json();
                 setPopularMovies(data.results);
             } catch (error) {
@@ -34,7 +36,6 @@ const Home = () => {
                 setUserInfo(response.data.user);
             }
         } catch (error) {
-            // No redirection on error, simply log it
             console.error("Error fetching user info:", error);
         }
     };
