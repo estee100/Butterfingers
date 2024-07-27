@@ -89,7 +89,7 @@ const Movie = () => {
       setToastMessage("Movie details are not available.");
       return;
     }
-  
+
     try {
       const response = await axios.post(
         `${BASE_URL}/add-to-list`,

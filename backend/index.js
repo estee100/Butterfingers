@@ -6,9 +6,6 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 mongoose.connect(config.connectionString);
 
-
-
-
 const User = require("./models/user.model");
 const express = require("express");
 const cors = require("cors");
@@ -143,9 +140,13 @@ app.post("/add-to-list", authenticateToken, async (req, res) => {
     }
   
     try {
+      console.log('Received movieId:', movieId);
+  
       const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
         params: { api_key: apiKey },
       });
+  
+      console.log('TMDB response:', response.data);
   
       const movie = {
         movieId: response.data.id,
@@ -174,7 +175,7 @@ app.post("/add-to-list", authenticateToken, async (req, res) => {
       console.error("Error adding movie to list:", error);
       return res.status(500).json({ error: true, message: "Internal server error" });
     }
-});  
+  });  
 
 // Remove from list
 app.delete('/my-list/:movieId', authenticateToken, async (req, res) => {
