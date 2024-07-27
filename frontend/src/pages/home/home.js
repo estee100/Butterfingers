@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MovieList from "../../components/movieList/movieList";
 import axiosInstance from "../../utils/axiosInstance";
 
@@ -10,7 +10,6 @@ const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchPopularMovies = async () => {
@@ -35,16 +34,14 @@ const Home = () => {
                 setUserInfo(response.data.user);
             }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                localStorage.clear();
-                navigate("/");
-            }
+            // No redirection on error, simply log it
+            console.error("Error fetching user info:", error);
         }
     };
 
     useEffect(() => {
         getUserInfo();
-    }, [navigate]);
+    }, []);
 
     return (
         <>
