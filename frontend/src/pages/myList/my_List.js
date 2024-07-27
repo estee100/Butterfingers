@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './my_List.css';
+import { BASE_URL } from '../../utils/constants';
 
 const MyListPage = () => {
     const [movies, setMovies] = useState([]);
@@ -16,7 +17,7 @@ const MyListPage = () => {
 
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('http://localhost:4321/my-list', {
+                const response = await axios.get(`${BASE_URL}/my-list`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
                 });
                 setMovies(response.data);
@@ -30,7 +31,7 @@ const MyListPage = () => {
 
     const updateMovie = async (movieId, rating, status) => {
         try {
-            await axios.put(`http://localhost:4321/my-list/${movieId}`, 
+            await axios.put(`${BASE_URL}/my-list/${movieId}`, 
                 { rating, status },
                 { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }
             );
@@ -41,7 +42,7 @@ const MyListPage = () => {
 
     const handleRemoveMovie = async (movieId) => {
         try {
-            const response = await axios.delete(`http://localhost:4321/my-list/${movieId}`, {
+            const response = await axios.delete(`${BASE_URL}/my-list/${movieId}`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
             });
 
@@ -61,7 +62,7 @@ const MyListPage = () => {
                 movie.movieId === movieId ? { ...movie, rating: newRating } : movie
             )
         );
-        await updateMovie(movieId, newRating, undefined); // Call backend to update rating
+        await updateMovie(movieId, newRating, undefined);
     };
 
     const handleStatusChange = async (movieId, newStatus) => {
@@ -70,7 +71,7 @@ const MyListPage = () => {
                 movie.movieId === movieId ? { ...movie, status: newStatus } : movie
             )
         );
-        await updateMovie(movieId, undefined, newStatus); // Call backend to update status
+        await updateMovie(movieId, undefined, newStatus);
     };
 
     const sortedMovies = movies.sort((a, b) => (b.rating || 0) - (a.rating || 0));
