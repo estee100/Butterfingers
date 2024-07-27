@@ -89,7 +89,7 @@ const Movie = () => {
   
     try {
       const response = await axios.post(
-        'http://localhost:4321/add-to-list',
+        'https://butterfingers-app.vercel.app/add-to-list',
         { movieId: currentMovieDetail.id },
         { headers: { Authorization: `Bearer ${token}` } }
       );

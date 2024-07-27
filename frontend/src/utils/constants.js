@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://localhost:4321'
+export const BASE_URL = 'https://butterfingers-app.vercel.app'
