@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 
 mongoose.connect(config.connectionString);
 
+mongoose.set('strictQuery', true);
+
+
 const User = require("./models/user.model");
 const port = 4321;
 const express = require("express");
