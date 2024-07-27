@@ -22,7 +22,9 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin: "https://butterfingers-app.vercel.app"
+        origin: "https://butterfingers-app.vercel.app",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true
     })
 );
 
@@ -249,10 +251,6 @@ app.get('/my-list', authenticateToken, async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 });
-
-//app.listen(port, () => {
-    //console.log(`Server is running on http://localhost:${port}`);
-//});
 
 app.listen(process.env.PORT || 4321);
 
