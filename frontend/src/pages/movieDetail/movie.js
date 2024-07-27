@@ -4,6 +4,9 @@ import { useParams, Link } from 'react-router-dom';
 import Cards from '../../components/card/card';
 import axios from 'axios';
 import Toast from '../../components/popUp/toast';
+import { BASE_URL } from '../../utils/constants';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const Movie = () => {
   const [currentMovieDetail, setMovie] = useState();
@@ -17,7 +20,7 @@ const Movie = () => {
   const getData = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
       );
       const data = await response.json();
       setMovie(data);
@@ -29,7 +32,7 @@ const Movie = () => {
   const fetchSimilarMovies = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`
       );
       const data = await response.json();
       setSimilarMovies(data.results.slice(0, 7));
@@ -41,7 +44,7 @@ const Movie = () => {
   const fetchCredits = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=f2419be680eb57c59af5546ebdb0df53`
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`
       );
       const data = await response.json();
       const directors = data.crew.filter((member) => member.job === "Director");
@@ -54,7 +57,7 @@ const Movie = () => {
   const fetchTrailer = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US`
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
       );
       const data = await response.json();
       const trailers = data.results.filter(video => video.type === 'Trailer' && video.site === 'YouTube');
@@ -89,7 +92,7 @@ const Movie = () => {
   
     try {
       const response = await axios.post(
-        'https://butterfingers-app.vercel.app/add-to-list',
+        `${BASE_URL}/add-to-list`,
         { movieId: currentMovieDetail.id },
         { headers: { Authorization: `Bearer ${token}` } }
       );

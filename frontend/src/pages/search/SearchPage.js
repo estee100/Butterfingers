@@ -4,13 +4,15 @@ import './searchPage.css';
 import Cards from '../../components/card/card';
 import axios from 'axios';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const SearchPage = () => {
   const location = useLocation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [pageNo, setPageNo] = useState(1);
-  const [setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const query = new URLSearchParams(location.search).get('q');
 
@@ -29,7 +31,7 @@ const SearchPage = () => {
     try {
       const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
-          api_key: 'f2419be680eb57c59af5546ebdb0df53',
+          api_key: API_KEY,
           query: query,
           page: pageNo,
         },

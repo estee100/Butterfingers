@@ -3,6 +3,8 @@ import "./movieList.css";
 import { useParams } from "react-router-dom";
 import Cards from "../card/card";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
@@ -15,7 +17,7 @@ const MovieList = () => {
 
   const getData = (pageNumber) => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${type ? type : "popular"}?api_key=f2419be680eb57c59af5546ebdb0df53&language=en-US&page=${pageNumber}`
+      `${BASE_URL}/movie/${type ? type : "popular"}?api_key=${API_KEY}&language=en-US&page=${pageNumber}`
     )
       .then((res) => res.json())
       .then((data) => {
