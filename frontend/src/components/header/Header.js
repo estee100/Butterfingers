@@ -25,15 +25,26 @@ const Header = () => {
       const response = await axiosInstance.get("get-user");
       if (response.data && response.data.user) {
         setUserInfo(response.data.user);
+      } else {
+        setUserInfo(null);
       }
     } catch (error) {
       console.error("Failed to fetch user info:", error);
+      setUserInfo(null);
     }
   };
 
   useEffect(() => {
     getUserInfo();
   }, [navigate]);
+
+  const handleProfileClick = () => {
+    if (userInfo) {
+      setOpenProfile(prev => !prev);
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className={`header ${openProfile ? 'shifted' : ''}`}>
@@ -75,15 +86,13 @@ const Header = () => {
           </form>
         </div>
 
-        {userInfo && (
-          <div className="profile_icon">
-            <CgProfile
-              className="profileIcon"
-              style={{ color: "white" }}
-              onClick={() => setOpenProfile((prev) => !prev)}
-            />
-          </div>
-        )}
+        <div className="profile_icon">
+          <CgProfile
+            className="profileIcon"
+            style={{ color: "white" }}
+            onClick={handleProfileClick}
+          />
+        </div>
         <ProfileInfo openProfile={openProfile} setOpenProfile={setOpenProfile} userInfo={userInfo} />
       </div>
     </div>
