@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 mongoose.connect(config.connectionString);
 
-mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', false);
 
 
 const User = require("./models/user.model");
