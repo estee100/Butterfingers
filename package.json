@@ -6,16 +6,18 @@
   "scripts": {
     "start": "node backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
-  "author": "Your Name",
+  "author": "Sheldon Tang",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.13",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "cors": "^2.8.5"
+    "mongoose": "^6.0.13",
+    "react-router-dom": "^6.25.1",
+    "react-scripts": "^5.0.1"
   },
   "engines": {
     "node": "14.x",
