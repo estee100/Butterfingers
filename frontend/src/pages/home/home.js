@@ -8,7 +8,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
-    const [userInfo, setUserInfo] = useState(null); // Define userInfo state
+    const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const Home = () => {
         try {
             const response = await axiosInstance.get("get-user");
             if (response.data && response.data.user) {
-                setUserInfo(response.data.user); // Use setUserInfo to update state
+                setUserInfo(response.data.user);
             }
         } catch (error) {
             if (error.response && error.response.status === 401) {
