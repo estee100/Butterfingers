@@ -27,10 +27,7 @@ const Header = () => {
         setUserInfo(response.data.user);
       }
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        localStorage.clear();
-        navigate("/login");
-      }
+      console.error("Failed to fetch user info:", error);
     }
   };
 
@@ -78,13 +75,15 @@ const Header = () => {
           </form>
         </div>
 
-        <div className="profile_icon">
-          <CgProfile
-            className="profileIcon"
-            style={{ color: "white" }}
-            onClick={() => setOpenProfile((prev) => !prev)}
-          />
-        </div>
+        {userInfo && (
+          <div className="profile_icon">
+            <CgProfile
+              className="profileIcon"
+              style={{ color: "white" }}
+              onClick={() => setOpenProfile((prev) => !prev)}
+            />
+          </div>
+        )}
         <ProfileInfo openProfile={openProfile} setOpenProfile={setOpenProfile} userInfo={userInfo} />
       </div>
     </div>
