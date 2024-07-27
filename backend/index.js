@@ -3,14 +3,13 @@ require("dotenv").config();
 const apiKey = process.env.TMDB_API_KEY;
 const config = require("./config.json");
 const mongoose = require("mongoose");
-
+mongoose.set('strictQuery', false);
 mongoose.connect(config.connectionString);
 
-mongoose.set('strictQuery', false);
+
 
 
 const User = require("./models/user.model");
-const port = 4321;
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -252,6 +251,9 @@ app.get('/my-list', authenticateToken, async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 4321);
+app.listen(process.env.PORT || 4321, () => {
+    console.log(`Server running on port ${process.env.PORT || 4321}`);
+});
+
 
 module.exports = app;

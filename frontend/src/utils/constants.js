@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://butterfingers-app.vercel.app'
+export const BASE_URL = 'https://butterfingers-450b477e20ec.herokuapp.com'
