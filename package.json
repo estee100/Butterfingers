@@ -11,11 +11,13 @@
   "author": "Sheldon Tang",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.0.13",
+    "nodemon": "^3.1.4",
     "react-router-dom": "^6.25.1",
     "react-scripts": "^3.0.1"
   },
