@@ -140,13 +140,9 @@ app.post("/add-to-list", authenticateToken, async (req, res) => {
     }
   
     try {
-      console.log('Received movieId:', movieId);
-  
       const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
         params: { api_key: apiKey },
       });
-  
-      console.log('TMDB response:', response.data);
   
       const movie = {
         movieId: response.data.id,
@@ -172,10 +168,11 @@ app.post("/add-to-list", authenticateToken, async (req, res) => {
   
       return res.json({ error: false, message: "Movie added to My List successfully", user: updatedUser });
     } catch (error) {
-      console.error("Error adding movie to list:", error);
+      console.error("Error adding movie to list:", error.message);
+      console.error("Error details:", error.response ? error.response.data : error);
       return res.status(500).json({ error: true, message: "Internal server error" });
     }
-  });  
+  });
 
 // Remove from list
 app.delete('/my-list/:movieId', authenticateToken, async (req, res) => {
