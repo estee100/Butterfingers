@@ -247,8 +247,10 @@ app.get('/my-list', authenticateToken, async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+//app.listen(port, () => {
+    //console.log(`Server is running on http://localhost:${port}`);
+//});
+
+app.listen(process.env.PORT || 4321);
 
 module.exports = app;
