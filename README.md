@@ -80,6 +80,9 @@ npm start
 - POST /add-to-list: Add a movie to the user's list (requires authentication)
 - GET /movies/:type: Fetch a list of movies (e.g., popular, top-rated, upcoming)
 - GET /movie/:id: Fetch detailed information about a specific movie
+- DELETE /my-list/:movieId Remove movie from list
+- PUT /my-list/:movieId Handle rating and status of movies
+- GET /my-list Fetch movies in the users list
 ## Contributing
 1. Fork the repository.
 2. Create a new branch for your feature or bugfix.
@@ -87,7 +90,7 @@ npm start
 4. Push your changes to your forked repository.
 5. Submit a pull request.
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
 
 ## Acknowledgements
 - TMDB API for movie data
