@@ -90,7 +90,7 @@ npm start
 4. Push your changes to your forked repository.
 5. Submit a pull request.
 ## License
-This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE.txt) - see the LICENSE file for details.
 
 ## Acknowledgements
 - TMDB API for movie data
