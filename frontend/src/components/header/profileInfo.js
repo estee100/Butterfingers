@@ -19,9 +19,9 @@ const ProfileInfo = ({ openProfile, setOpenProfile, userInfo }) => {
             </div>
           </>
         ) : (
-          <button className="login-button">
+          <div className="login-button">
             <Link to="/login">Login</Link>
-          </button>
+          </div>
         )}
       </div>
     )
