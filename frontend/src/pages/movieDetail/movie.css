@@ -184,11 +184,13 @@
     }
 
     .movie__links a {
+        justify-content: left;
         display: block;
         width: 100%;
+        margin-top: 5rem;
     }
 
-    .addToListButton {
-        margin-top: 2rem;
+    .movie__similar {
+        display: none;
     }
 }
