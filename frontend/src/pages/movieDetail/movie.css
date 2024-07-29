@@ -167,7 +167,6 @@
     margin-bottom: 2rem;
     display: flex;
     gap: 10px;
-    margin-top: 0.1rem;
     margin-left: 3%
 }
 
@@ -178,17 +177,18 @@
 
 @media (max-width: 768px) {
     .movie__links {
-      flex-direction: column;
-      margin-left: 0;
-      margin-top: 2rem;
+        flex-direction: column;
+        margin-left: 0;
+        margin-top: 2rem;
+        gap: 1rem;
     }
-  
-    .useful_links {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
-  }
 
-    .movie__similar {
-        display: none;
+    .movie__links a {
+        display: block;
+        width: 100%;
     }
+
+    .addToListButton {
+        margin-top: 2rem;
+    }
+}
