@@ -164,8 +164,7 @@
 }
 
 .movie__links {
-    position: relative;
-    bottom: 120px;
+    margin-bottom: 2rem;
     display: flex;
     gap: 10px;
     margin-top: 4rem;
@@ -176,3 +175,16 @@
     color: white;
     font-size: 1.5rem;
 }
+
+@media (max-width: 768px) {
+    .movie__links {
+      flex-direction: column;
+      margin-left: 0;
+      margin-top: 2rem;
+    }
+  
+    .useful_links {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+  }

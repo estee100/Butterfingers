@@ -143,11 +143,8 @@
     padding: 0.5rem;
   }
 
-  .headerLeft {
-    width: 25%;
-  }
-
-  .headerRight {
-    width: 25%;
+  .headerLink {
+    font-size: 1rem;
+    margin-right: 0.5rem;
   }
 }
