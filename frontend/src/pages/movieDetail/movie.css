@@ -21,6 +21,7 @@
     align-items: center;
     width: 75%;
     display: flex;
+    flex-direction: column;
     position: relative;
     bottom: 225px;
 }
@@ -39,8 +40,10 @@
     color: white;
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 450px;
     justify-content: space-between;
+    width: 100%; 
 }
 
 .movie__detailRightTop > div {
@@ -105,6 +108,7 @@
     text-align: center;
     text-decoration: none;
     margin-bottom: 1rem;
+    box-sizing: border-box;
 }
 
 .movie__homeButton {
@@ -122,16 +126,6 @@
 
 .newTab {
     margin-left: 1rem;
-}
-
-.movie__heading {
-    font-size: 1.5rem;
-    margin-top: 1.7rem;
-    margin-bottom: 1.25rem;
-    font-weight: 600;
-    display: flex;
-    position: relative;
-    align-items: center;
 }
 
 .addToListButton {
@@ -168,9 +162,11 @@
     position: relative;
     bottom: 120px;
     display: flex;
+    flex-wrap: wrap; 
     gap: 10px;
     margin-top: 4rem;
     margin-left: 3%;
+    justify-content: center; 
 }
 
 .movie__heading {
@@ -179,8 +175,12 @@
 }
 
 @media (min-width: 600px) {
+    .movie__detail {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
     .movie__Button {
-        width: 150px;
         max-width: 150px;
     }
 
@@ -191,7 +191,6 @@
 
 @media (min-width: 1024px) {
     .movie__Button {
-        width: 200px;
         max-width: 200px;
     }
 
