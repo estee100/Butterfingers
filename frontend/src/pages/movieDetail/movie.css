@@ -167,7 +167,7 @@
     margin-bottom: 2rem;
     display: flex;
     gap: 10px;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
     margin-left: 3%
 }
 
@@ -178,7 +178,9 @@
 
 @media (max-width: 768px) {
     .movie__links {
-      display: none;
+      flex-direction: column;
+      margin-left: 0;
+      margin-top: 2rem;
     }
   
     .useful_links {
@@ -187,6 +189,6 @@
     }
   }
 
-    .addToListButton {
-        margin-bottom: 2rem;
+    .movie__similar {
+        display: none;
     }
