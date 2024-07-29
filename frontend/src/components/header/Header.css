@@ -138,4 +138,16 @@
   .profile_icon {
     margin-left: 1rem;
   }
+
+  .header {
+    padding: 0.5rem;
+  }
+
+  .headerLeft {
+    width: 25%;
+  }
+
+  .headerRight {
+    width: 25%;
+  }
 }
