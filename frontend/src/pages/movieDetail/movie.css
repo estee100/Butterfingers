@@ -17,11 +17,11 @@
     object-position: 0 35%;
 }
 
+
 .movie__detail {
     align-items: center;
     width: 75%;
     display: flex;
-    flex-direction: column;
     position: relative;
     bottom: 225px;
 }
@@ -40,10 +40,8 @@
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 450px;
     justify-content: space-between;
-    width: 100%; 
 }
 
 .movie__detailRightTop > div {
@@ -101,14 +99,11 @@
     padding: 0.8rem 2rem;
     border-radius: 20px;
     cursor: pointer;
-    width: 100%;
-    max-width: 200px;
+    width: 150px;
     color: black;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
 }
 
 .movie__homeButton {
@@ -125,7 +120,17 @@
 }
 
 .newTab {
-    margin-left: 1rem;
+    margin-left: 1.4rem;
+}
+
+.movie__heading {
+    font-size: 1.5rem;
+    margin-top: 1.7rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    position: relative;
+    align-items: center;
 }
 
 .addToListButton {
@@ -162,39 +167,12 @@
     position: relative;
     bottom: 120px;
     display: flex;
-    flex-wrap: wrap; 
     gap: 10px;
     margin-top: 4rem;
-    margin-left: 3%;
-    justify-content: center; 
+    margin-left: 3%
 }
 
 .movie__heading {
     color: white;
     font-size: 1.5rem;
-}
-
-@media (min-width: 600px) {
-    .movie__detail {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-
-    .movie__Button {
-        max-width: 150px;
-    }
-
-    .newTab {
-        margin-left: 1.4rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .movie__Button {
-        max-width: 200px;
-    }
-
-    .newTab {
-        margin-left: 1.6rem;
-    }
 }
