@@ -20,7 +20,8 @@ app.use(
     cors({
         origin: "https://butterfingers-app.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true
+        credentials: true,
+        allowedHeaders: ["Content-Type", "Authorization"]
     })
 );
 
